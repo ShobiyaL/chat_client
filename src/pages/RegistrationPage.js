@@ -1,5 +1,5 @@
 import React, { useState, useContext,useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../context/auth";
 import { Alert } from "react-bootstrap";
 import { ToastContainer, toast } from 'react-toastify';
@@ -8,7 +8,10 @@ import { useNavigate } from "react-router-dom";
 
 const RegistrationPage = () => {
   const { registerUser,error,users } = useContext(AuthContext);
-
+  console.log(users)
+// const navigate = useNavigate()
+// const location = useLocation()
+// const redirect ='/'
   const [registerState, setRegisterState] = useState({
     username: "",
     email: "",
@@ -38,8 +41,11 @@ console.log({[event.target.name]:event.target.value})
 
 useEffect(()=>{
 if(users){
+  
 toast(`${users.message}, login to chat with your friends`)
+// navigate(redirect)
 }
+
 },[users])
 
 

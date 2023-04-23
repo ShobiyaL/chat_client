@@ -15,7 +15,7 @@ const [loading,setLoading] = useState(false);
         
         try{
             setLoading(true)
-            setError(null)
+            
        const response = await axios.post('http://localhost:8002/api/public/user/register',
        {username,email,password}
        )
@@ -34,11 +34,31 @@ const [loading,setLoading] = useState(false);
         }
     }
 
+    const loginUser = async({email,password})=>{
+        try{
+            setLoading(true)
+            
+            const response = await axios.post('http://localhost:8002/api/public/user/login',
+            {email,password}
+            )
+      console.log(response.data.user,'response data')
+         setLoading(false)
+     
+            let user = response.data
+            console.log(response.data)
+            localStorage.setItem('users', JSON.stringify(response.data.user))
+            setUsers(user)
+        }catch(error){
+            // console.log(error.response.data.message)
+            setError(error.response.data.message)
+        }
+    }
     const valueToShare ={
         users,
         registerUser,
         error,
-        loading
+        loading,
+        loginUser
     }
 
     return <AuthContext.Provider value={valueToShare}>
