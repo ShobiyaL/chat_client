@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  
 }
 
 .App-logo {
@@ -36,3 +37,12 @@
     transform: rotate(360deg);
   }
 }
+
+/* .form-container{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: azure;
+  height: 100vh;
+} */
