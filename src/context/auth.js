@@ -12,12 +12,18 @@ const [loading,setLoading] = useState(false);
 
 
     const registerUser = async({username,email,password})=>{
-        
+        setLoading(true)
         try{
-            setLoading(true)
+            
+            const config = {
+                headers:{
+                    'Content-Type': 'application/json'
+                }
+            }
             
        const response = await axios.post('https://chat-server-nine-tau.vercel.app/api/public/user/register',
-       {username,email,password}
+       {username,email,password},
+       config
        )
 // console.log(response.data.user,'response data')
     setLoading(false)
