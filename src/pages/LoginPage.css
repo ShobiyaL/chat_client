@@ -3,14 +3,13 @@
   margin:0;
   padding-top:70px;
   height:100vh;
- 
     background: -webkit-linear-gradient(to right,#155799,#159957);
     background: linear-gradient(to right,#155799,#159957);
+    
 }
 
 .form{
     width:30rem;
-    
     margin:auto;
     padding:20px;
 /* border:1px solid black; */
@@ -34,7 +33,7 @@ background-color: rgba(11, 15, 13, 0.582);
     box-sizing: border-box;
     margin:10px 0;
 }
-button{
+.auth-btn{
 background-color: #030804;
 width:100%;
 border-radius: 3px;
@@ -45,7 +44,7 @@ margin:10px 0;
 font-size: 18px;
 
 }
-button:hover {
+.auth-btn:hover {
     opacity: 0.6;
     cursor: pointer;
   }
@@ -67,13 +66,15 @@ button:hover {
 
 /* Media queries for the responsiveness of the page */
   @media screen and (max-width: 600px) {
-    form{
-      width: 25rem;
+    .form{
+      width: 20rem;
+      
     }
   }
   
   @media screen and (max-width: 400px) {
-    form{
-      width: 20rem;
+    .form{
+      width: 15rem;
+      
     }
   }  
