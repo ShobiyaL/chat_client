@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link,useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/auth";
+import { AuthContext } from "../../context/auth";
 import { Alert } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

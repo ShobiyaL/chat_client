@@ -1,36 +1,43 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Sidebar.css";
-import { AuthContext } from "../context/auth";
-import { ChatContext } from "../context/chat";
-import { FaEllipsisH, FaEdit, FaSistrix } from "react-icons/fa";
-import ActiveUser from "./ActiveUser";
-import Users from "./Users";
-import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/auth";
+import { ChatContext } from "../../context/chat";
+import { FaEllipsisH, FaEdit, FaSistrix, FaSignOutAlt } from "react-icons/fa";
+import ActiveUser from "../ActiveUser/ActiveUser";
+import Users from "../Users/Users";
+import { Outlet, useNavigate } from "react-router-dom";
 
-const Sidebar = ({user,logoutUser}) => {
+const Sidebar = ({user,logoutUser,setCurrentFriend,activeUser}) => {
   // console.log(user)
   const [isOpen,setIsOpen] = useState(false)
   
-  const {friends,getFriends} = useContext(ChatContext)
+  
+  const {friends,getFriends,loading} = useContext(ChatContext)
 
   useEffect(()=>{
 getFriends()
   },[])
 
-  const renderedFriendsandMsg = friends.map((friend)=>{
+  const handleFriend = (friend)=>{
+     setCurrentFriend(friend)
+  }
+
+  const renderedFriendsandMsg =  friends && friends.length>0 ? friends.map((friend)=>{
     return (
-      <div key={friend._id}>
+      <div key={friend._id} onClick={()=>handleFriend(friend)}>
         <Users  friend={friend}/>
       </div>
     )
-  })
+  }): 'No Friend'
 
 const navigate = useNavigate()
   const handleClick = ()=>{
     setIsOpen(!isOpen)
   }
 let isOpenOptions = [
-  'Logout',
+  {icon:<FaSignOutAlt/>,
+    option:'Logout'
+  },
   
 ]
 
@@ -56,18 +63,18 @@ const handleRenOptionClick = (item)=>{
         </div>
 
         <div className='icons' >
-        <div className='icon' >
-            <FaEdit/>
-          </div>
+        
+          
           <div className='icon' onClick={handleClick}>
             <FaEllipsisH />
+              
           </div>
           {
           isOpen && (
             <div className='select-options'>
               {
                 isOpenOptions.map((item,index)=>(
-                  <div key={index} className='rendered-options'onClick={()=>handleRenOptionClick(item)}>{item}</div>
+                  <div key={index} className='rendered-options'onClick={()=>handleRenOptionClick(item.option)}>{item.icon}{" "}{item.option}</div>
                 ))
               }
             </div>
@@ -83,19 +90,30 @@ const handleRenOptionClick = (item)=>{
         </div>
 
       </div>
-      {/* <div className='active-users'>
-<ActiveUser />
-      </div> */}
+      <div className='active-users'>
+        <h5 style={{ padding:'0px',margin: '0px 0px 0px 10px'}}>Active users</h5>
+        {
+          activeUser && activeUser.length > 0 ? activeUser.map(actUser=>{
+            return  <ActiveUser actUser={actUser} /> 
+          }
+         
+          ):(<div>No active users found..</div>)
+        }
+
+      </div>
       <div className='separator'></div>
       <div className='users'>
         <div >
           {
-        renderedFriendsandMsg
+            loading ? 'Loading...' : renderedFriendsandMsg
           }
+          
         </div>
         
       </div>
+      
     </div>
+
   );
 };
 

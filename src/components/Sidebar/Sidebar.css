@@ -127,7 +127,7 @@ margin-right:5px ;
   width:100px;
   height:40px;
   display: flex;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   align-items: center;
   justify-content: center;
   /* background-color:; */

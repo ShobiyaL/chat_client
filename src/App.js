@@ -1,14 +1,15 @@
 
 import './App.css';
 import { BrowserRouter,Routes,Route} from 'react-router-dom';
-import LoginPage from './pages/LoginPage';
-import RegistrationPage from './pages/RegistrationPage';
-import ChatPage from './pages/ChatPage';
-import socketIO from 'socket.io-client'
+import LoginPage from './pages/AuthPage/LoginPage';
+import RegistrationPage from './pages/AuthPage/RegistrationPage';
+import ChatPage from './pages/ChatPage/ChatPage';
 import ChatContextProvider from './context/chat';
 import { useContext } from 'react';
 import { AuthContext } from './context/auth';
-// const socket = socketIO.connect('http://localhost:4000');
+
+
+
 
 function App() {
  const {user}= useContext(AuthContext)
@@ -19,7 +20,12 @@ function App() {
       <Routes>
         <Route path='/'  element={<LoginPage/>}/>
         <Route path='/register' element={<RegistrationPage/>}/>
-        <Route path='/chat-page' element={ <ChatPage />    } />
+        
+        <Route path='/chat-page' element={ <ChatPage />}>
+        
+        {/* <Route path='chat-area' element={<Chatarea/>}/> */}
+        </Route>
+       
       </Routes>
       </BrowserRouter>
       </ChatContextProvider>
