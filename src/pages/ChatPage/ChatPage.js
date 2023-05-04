@@ -25,7 +25,7 @@ const [socketMessage,setSocketMessage] = useState('')
   
 
 useEffect(()=>{
- socket.current = io('http://localhost:8002')
+ socket.current = io('https://chat-server-nine-tau.vercel.app/')
  socket.current.on('get-message',(data)=>{
 // console.log(data)
    setSocketMessage(data)

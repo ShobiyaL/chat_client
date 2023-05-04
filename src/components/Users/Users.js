@@ -28,7 +28,7 @@ const Users = ({friend}) => {
             <div className='send-time-seen'>
                 <div className='send-time'>{DD}</div>
                 {/*  include tick icon from icons */}
-           <div>✔✔</div>
+           {/* <div>✔✔</div> */}
             </div>
             
         </div>
