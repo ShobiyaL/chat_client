@@ -25,7 +25,7 @@ const [socketMessage,setSocketMessage] = useState('')
   
 
 useEffect(()=>{
- socket.current = io('https://chat-server-nine-tau.vercel.app/')
+ socket.current = io('https://chat-app-server-biq1.onrender.com')
  socket.current.on('get-message',(data)=>{
 // console.log(data)
    setSocketMessage(data)
